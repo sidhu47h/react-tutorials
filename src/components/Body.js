@@ -4,7 +4,7 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   // Local State Variable - Super powerful variable
-  const [listOfRestaurants, setListOfRestraunt] = useState([]);
+  const [listOfRestaurants, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
@@ -24,8 +24,8 @@ const Body = () => {
     const json = await data.json();
 
     // Optional Chaining
-    setListOfRestraunt(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+    setListOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
   return listOfRestaurants.length === 0 ? (
@@ -49,7 +49,7 @@ const Body = () => {
               console.log(searchText);
 
               const filteredRestaurant = listOfRestaurants.filter((res) =>
-                res.data.name.toLowerCase().includes(searchText.toLowerCase())
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
 
               setFilteredRestaurant(filteredRestaurant);
@@ -62,9 +62,10 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
-              (res) => res.data.avgRating > 4
+              (res) => res.info.avgRating > 4.5
             );
-            setListOfRestraunt(filteredList);
+            console.log(filteredList);
+            setListOfRestaurant(filteredList);
           }}
         >
           Top Rated Restaurants
@@ -72,7 +73,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+          <RestaurantCard key={restaurant?.info.id} resData={restaurant?.info} />
         ))}
       </div>
     </div>
