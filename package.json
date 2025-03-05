@@ -1,5 +1,5 @@
 {
-  "name": "react-tutorials",
+  "name": "namaste-react",
   "version": "1.0.0",
   "description": "This is Namaste React by Akshay Saini",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/namastedev/namaste-react#readme",
   "devDependencies": {
-    "parcel": "^2.13.3",
+    "parcel": "^2.8.3",
     "process": "^0.11.10"
   },
   "dependencies": {
@@ -28,6 +28,5 @@
   },
   "browserslist": [
     "last 2 versions"
-  ],
-  "main": "App.js"
+  ]
 }
